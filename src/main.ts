@@ -30,6 +30,28 @@ console.log(drycker.join(", "));
 // d) skriv ut Object.keys(kopp)
 // TODO
 
+interface Kopp {
+  namn: string;
+  pris: number;
+  vegetarisk: boolean;
+  storlek?: string;
+}
+
+const kopp: Kopp = { namn: "Latte", pris: 45, vegetarisk: true };
+
+console.log(kopp.namn, kopp["pris"]);
+
+kopp.pris = 48;
+kopp.storlek = "stor";
+
+console.log(kopp.pris);
+console.log(kopp.storlek);
+
+console.log(Object.keys(kopp));
+
+// Jag använder punkt för att skriva vilken egenskap jag vill hämta.
+// Hakparenteser kan använda en separat variabel som innehåller egenskapens namn.
+
 // UPPGIFT 3: arrayer av objekt
 // a) skriv ut hur många rätter menyn har och namnet på den första
 // b) loopa med for...of och skriv ut "namn – pris kr" för varje rätt
