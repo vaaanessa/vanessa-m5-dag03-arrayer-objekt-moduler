@@ -98,4 +98,4 @@ export function medNyttPris(ratt: Ratt, nyttPris: number): Ratt {
   return { ...ratt, pris: nyttPris };
 }
 
-// Jag skapar en kopia med det nya priset så att originalet inte ändras. ratt.pris = nyttPris skulle ändra priset i originalobjektet.
+// Jag skapar en kopia med det nya priset så att originalet inte ändras, ratt.pris = nyttPris skulle ändra priset i originalobjektet.
