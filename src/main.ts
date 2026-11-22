@@ -1,5 +1,6 @@
 // Dag 3, del 1: Arrayer och objekt i Console.
 import { meny } from "./data";
+import { studentPris } from "./rabatt";
 
 // UPPGIFT 1: arrayer
 // a) skapa const drycker: string[] = ["Bryggkaffe", "Latte", "Te"];
@@ -64,4 +65,14 @@ console.log(meny[0].namn);
 for (const ratt of meny) {
   console.log(`${ratt.namn} - ${ratt.pris}`);
 }
-console.log(meny[meny.length - 1].namn);
+console.log(meny[meny.length - 1].namn); //Uppgift 4
+for (const ratt of meny) {
+  const nyttPris = studentPris(ratt.pris);
+  console.log(`${ratt.namn}: ${nyttPris.toFixed(2)} kr`);
+}
+
+//Tre fel
+
+// När jag tog bort type="module" kunde webbläsaren inte använda import. Koden slutade därför att köras.
+// När jag skrev fel filnamn i importen kunde Vite inte hitta filen. Därför kunde koden inte köras.
+// När jag öppnade index.html genom att dubbelklicka blockerade webbläsaren kodfilen. Projektet behöver öppnas via Vite-servern.

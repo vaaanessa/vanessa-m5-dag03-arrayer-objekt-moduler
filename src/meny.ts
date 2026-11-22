@@ -56,17 +56,21 @@ export function sorteraEfterPris(meny: Ratt[]): Ratt[] {
 // 7. Totalpris för en order. order = [{ id: 1, antal: 2 }, { id: 5, antal: 1 }]
 //    Slå upp priset för varje id i menyn. Okända id räknas som 0 kr.
 export function totalPris(order: OrderRad[], meny: Ratt[]): number {
-  let total: number = 0;
-
-  for (const rad of order) {
+  return order.reduce((total, rad) => {
     const ratt = meny.find((ratt) => ratt.id === rad.id);
 
     if (ratt !== undefined) {
-      total = total + ratt.pris * rad.antal;
-    }
-  }
+      const radPris: number = ratt.pris * rad.antal;
 
-  return total;
+      console.log("Summa hittills:", total);
+      console.log("Radens pris:", radPris);
+      console.log("Ny summa:", total + radPris);
+
+      return total + radPris;
+    }
+
+    return total;
+  }, 0);
 }
 
 // 8. Antal rätter per kategori som ett objekt: { bakverk: 3, dryck: 2, lunch: 3 } (reduce)
@@ -81,6 +85,8 @@ export function perKategori(meny: Ratt[]): Record<string, number> {
         antal[kategori] = antal[kategori] + 1;
       }
 
+      console.log("Antal hittills:", { ...antal });
+
       return antal;
     },
     {} as Record<string, number>,
@@ -91,3 +97,5 @@ export function perKategori(meny: Ratt[]): Record<string, number> {
 export function medNyttPris(ratt: Ratt, nyttPris: number): Ratt {
   return { ...ratt, pris: nyttPris };
 }
+
+// Jag skapar en kopia med det nya priset så att originalet inte ändras. ratt.pris = nyttPris skulle ändra priset i originalobjektet.
